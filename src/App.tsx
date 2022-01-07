@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { useRef } from "react";
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -7,6 +8,17 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const BiggerBox = styled.div`
+  width: 600px;
+  height: 600px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 `;
 
 const Box = styled(motion.div)`
@@ -20,21 +32,26 @@ const Box = styled(motion.div)`
 `;
 
 const boxVariants = {
-  hover: { scale: 2, rotateZ: 90 },
-  tap: { scale: 1, borderRadius: "100px" },
-  drag: { backgroundColor: "rgba(46,204,113)", transition: { duration: 10 } },
+  hover: { rotateZ: 90 },
+  tap: { borderRadius: "100px" },
 };
 
 function App() {
+  const biggerBoxRef = useRef<HTMLDivElement>(null);
+  console.log(biggerBoxRef);
   return (
     <Wrapper>
-      <Box
-        drag
-        variants={boxVariants}
-        whileHover="hover"
-        whileDrag="drag"
-        whileTap="tap"
-      />
+      <BiggerBox ref={biggerBoxRef}>
+        <Box
+          drag
+          dragSnapToOrigin
+          dragElastic={1}
+          dragConstraints={biggerBoxRef}
+          variants={boxVariants}
+          whileHover="hover"
+          whileTap="tap"
+        />
+      </BiggerBox>
     </Wrapper>
   );
 }

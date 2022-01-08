@@ -12,17 +12,17 @@ initial,animate 이름은 객체 프로퍼티 키와 동일해야 한다.
 
 부모 컴포넌트가 variant와 initial의 variant 이름 animate의 이름을 갖고 있을 때,Motion은 이걸 복사해서 자식에게 전달한다.(기본적인 동작)
 
-delayChildren: delay 시간 후에 자식 애니메이션이 시작됨
-staggerChildren: 자식 컴포넌트의 애니메이션에 지속시간만큼 시차를 둘 수 있다.
+`delayChildren`: delay 시간 후에 자식 애니메이션이 시작됨
+`staggerChildren`: 자식 컴포넌트의 애니메이션에 지속시간만큼 시차를 둘 수 있다.
 x,y 같은 css 요소는 animation Motion에만 국한됨
 
 ### Gesture
 
-whileTap, whileHover
+`whileTap`, `whileHover`
 
 drag 속성을 이용하면 드래그도 가능하다.
 
-whiledrag라는 속성을 이용하여 backgroundColor를 변경한다고 하면 단순히 "blue"라고 했을 때 animation이 나타나지 않는다.
+`whiledrag`라는 속성을 이용하여 backgroundColor를 변경한다고 하면 단순히 "blue"라고 했을 때 animation이 나타나지 않는다.
 
 따라서 rgba 값으로 넣어주면 즉각적으로 변하지 않고 천천히 변한다. 그 이유는 숫자값으로 컬러를 설정했기 때문
 
@@ -30,9 +30,9 @@ constraint
 
 drag="x"로 하면 x축 내에서만 드래그가 가능하고 y축으로는 불가능하다.
 
-dragConstraints - 드래그 가능한 영역까지로 제한
+`dragConstraints`- 드래그 가능한 영역까지로 제한
 
-dragSnapToOrigin - 원래 위치로 되돌아가게 하는 속성
+`dragSnapToOrigin` - 원래 위치로 되돌아가게 하는 속성
 
 ### Motion Value
 

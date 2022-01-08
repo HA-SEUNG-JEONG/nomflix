@@ -33,3 +33,30 @@ drag="x"로 하면 x축 내에서만 드래그가 가능하고 y축으로는 불
 dragConstraints - 드래그 가능한 영역까지로 제한
 
 dragSnapToOrigin - 원래 위치로 되돌아가게 하는 속성
+
+### Motion Value
+
+특정한 값을 계속 추적할 수 있도록 해줌
+
+x축의 위치에 따라 배경색 같은 것을 바꾸고 싶을 때, useMotionValue를 이용하면 되고 기본값은 `0`이다.
+
+```tsx
+const x = useMotionValue(0);
+console.log(x);
+```
+
+MotionValue가 바뀌면 x좌표는 바뀌지만 rendering은 한번만 실행되고 다시 rendering 되지 않는다.
+
+```tsx
+useEffect(() => {
+  x.onChange(() => console.log(x.get()));
+}, [x]);
+```
+
+useEffect,onChange event를 사용하여 x좌표가 바뀔때마다 console에 찍히도록 한다.
+
+```tsx
+<Box style={{ x }} drag="x" dragSnapToOrigin />
+```
+
+`useMotionValue`를 이용하여 변수를 생성하고 그 변수를 style에 넣을 때 사용자가 drag할때마다 그 변수 값이 계속 업데이트된다.

@@ -74,3 +74,5 @@ useEffect,onChange event를 사용하여 x좌표가 바뀔때마다 console에 �
 ```
 
 `useTransform`에서 가져온 값을 style에 적용시키면 드래그한 위치에 따라 크기가 달라진다.
+
+`useViewportScroll` : viewport가 스크롤돨 때 업데아트 되는 MotionValue를 return

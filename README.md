@@ -60,3 +60,17 @@ useEffect,onChange event를 사용하여 x좌표가 바뀔때마다 console에 �
 ```
 
 `useMotionValue`를 이용하여 변수를 생성하고 그 변수를 style에 넣을 때 사용자가 drag할때마다 그 변수 값이 계속 업데이트된다.
+
+드래그할때마다 위치에 따라 정사각형 크기를 다르게 하고 싶은 경우
+
+`useTransform`을 이용한다.
+
+첫번째 인자는 `useMotionValue`에서 불러온 값, 두번째인자는 `input array` 세번째 인자는 `output array`
+
+주의할 점은 input array와 output array는 서로 같은 배열 크기를 가져야 한다.
+
+```tsx
+<Box style={{ x, scale: transform }} drag="x" dragSnapToOrigin />
+```
+
+`useTransform`에서 가져온 값을 style에 적용시키면 드래그한 위치에 따라 크기가 달라진다.

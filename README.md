@@ -13,6 +13,7 @@ initial,animate 이름은 객체 프로퍼티 키와 동일해야 한다.
 부모 컴포넌트가 variant와 initial의 variant 이름 animate의 이름을 갖고 있을 때,Motion은 이걸 복사해서 자식에게 전달한다.(기본적인 동작)
 
 `delayChildren`: delay 시간 후에 자식 애니메이션이 시작됨
+
 `staggerChildren`: 자식 컴포넌트의 애니메이션에 지속시간만큼 시차를 둘 수 있다.
 x,y 같은 css 요소는 animation Motion에만 국한됨
 
@@ -76,3 +77,20 @@ useEffect,onChange event를 사용하여 x좌표가 바뀔때마다 console에 �
 `useTransform`에서 가져온 값을 style에 적용시키면 드래그한 위치에 따라 크기가 달라진다.
 
 `useViewportScroll` : viewport가 스크롤돨 때 업데아트 되는 MotionValue를 return
+
+```tsx
+const SVG = styled.svg`
+  width: 300px;
+  height: 300px;
+`;
+
+<SVG aria-hidden="true" focusable="false" viewBox="0 0 448 512">
+  <path fill="currentColor"></path>
+</SVG>;
+```
+
+`currentColor`는 path가 ``SVG`의 color를 가질 거라는 의미다.
+
+`pathLength` : 현재 위치까지의 path 길이
+
+특정 property의 animation duration을 단독으로 변경하는 방법도 있다.

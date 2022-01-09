@@ -94,3 +94,22 @@ const SVG = styled.svg`
 `pathLength` : 현재 위치까지의 path 길이
 
 특정 property의 animation duration을 단독으로 변경하는 방법도 있다.
+
+`AnimationPresence` : 컴포넌트가 제거될 때 제거되는 컴포넌트에 animation을 줄 수 있다.
+
+AnimationPresence의 규칙은 visible 상태여야 한다. 그리고 내부에는 조건문이 있어야 한다.
+
+```tsx
+{
+  showing ? (
+    <AnimatePresence>
+      {" "}
+      <Box />{" "}
+    </AnimatePresence>
+  ) : null;
+}
+```
+
+이렇게 작성하면 동작이 되지 않는다.
+
+`exit` : element가 사라질 때 어떤 animation을 발생시킬지를 정하는 것

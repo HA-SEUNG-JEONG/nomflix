@@ -113,3 +113,34 @@ AnimationPresence의 규칙은 visible 상태여야 한다. 그리고 내부에�
 이렇게 작성하면 동작이 되지 않는다.
 
 `exit` : element가 사라질 때 어떤 animation을 발생시킬지를 정하는 것
+
+```tsx
+function App() {
+  const [visible, setVisible] = useState(1);
+  return (
+    <Wrapper>
+      <AnimatePresence>
+        <Box
+          variants={boxVariants}
+          initial="invisible"
+          animate="visible"
+          exit="exit"
+          key={visible}
+        >
+          {visible}
+        </Box>
+      </AnimatePresence>
+    </Wrapper>
+  );
+}
+```
+
+key값으로 i가 아닌 visible로 바꾸면 React는 `<Box/>`가 사라졌다고 생각한다. 그 다음에 exit animation이 실행된다.
+
+`custom` : `variants`에 데이터를 보낼 수 있게 해주는 property
+
+variants는 원래 여러 object를 가진 object였지만 custom을 사용할 때는 varinat를 `object`를 return하는 function으로 바꿔야 한다.
+
+그리고 AnimatePresence component에도 custom을 넣어야 한다.
+
+`exitBeforeEnter` : exit animation이 완전히 끝나고 나면 다음 element를 보여줌

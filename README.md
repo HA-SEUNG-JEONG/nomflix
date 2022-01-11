@@ -144,3 +144,13 @@ variants는 원래 여러 object를 가진 object였지만 custom을 사용할 �
 그리고 AnimatePresence component에도 custom을 넣어야 한다.
 
 `exitBeforeEnter` : exit animation이 완전히 끝나고 나면 다음 element를 보여줌
+
+`layout animation`
+
+Props
+
+`layout` : element에게 전달하면 그 element의 layout이 바뀔 때 animate된다.
+
+`shared layout animation`
+
+'layoutId` : 서로 다른 component에 layoutId를 같게 하면 이 component들은 연결된다.

@@ -10,7 +10,6 @@ const Nav = styled(motion.nav)`
   position: fixed;
   width: 100%;
   top: 0;
-
   font-size: 14px;
   padding: 20px 60px;
   color: white;
@@ -50,6 +49,7 @@ const Item = styled.li`
 `;
 
 const Search = styled.span`
+  cursor: pointer;
   color: white;
   display: flex;
   align-items: center;

@@ -29,17 +29,17 @@ const Banner = styled.div<{ bgPhoto: string }>`
 
 const Title = styled.h2`
   font-size: 68px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `;
 
 const Overview = styled.p`
-  font-size: 34px;
+  font-size: 30px;
   width: 50%;
 `;
 
 const Slider = styled.div`
   position: relative;
-  top: -200px;
+  top: -100px;
 `;
 
 const Row = styled(motion.div)`
@@ -57,6 +57,12 @@ const Box = styled(motion.div)<{ bgPhoto: string }>`
   background-position: center center;
   height: 200px;
   font-size: 36px;
+  &:first-child{
+    transform-origin: center left;
+  }
+  &:last-child{
+    transform-origin: center right;
+  }
 `;
 
 const rowVariants = {
@@ -67,6 +73,16 @@ const rowVariants = {
   exit: { x: -window.outerWidth - 5 },
 };
 
+const BoxVariants={
+  normal:{
+    scale:1
+  },
+  hover:{
+    scale:1.3,
+    y:-50,
+    type:"tween"
+  }
+}
 const offset = 6;
 
 function Home() {
@@ -114,7 +130,11 @@ function Home() {
                   .slice(offset * index, offset * index + offset)
                   .map((movie) => (
                     <Box
+                    variants={BoxVariants}
                       key={movie.id}
+                      whileHover="hover"
+                      initial="normal"
+                      
                       bgPhoto={makeImagePath(movie.backdrop_path, "w500")}
                     />
                   ))}

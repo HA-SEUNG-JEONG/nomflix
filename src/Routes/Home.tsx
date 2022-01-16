@@ -51,21 +51,34 @@ const Row = styled(motion.div)`
 `;
 
 const Box = styled(motion.div)<{ bgPhoto: string }>`
-  background-color: red;
+  background-color: white;
   background-image: url(${(props) => props.bgPhoto});
   background-size: cover;
   background-position: center center;
   height: 200px;
-  font-size: 36px;
-  &:first-child{
+  font-size: 66px;
+  &:first-child {
     transform-origin: center left;
   }
-  &:last-child{
+  &:last-child {
     transform-origin: center right;
   }
 `;
 
-const rowVariants = {
+const Info=styled(motion.div)`
+  padding: 10px;
+  background-color: ${props=>props.theme.black.lighter};
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  h4{
+    text-align: center;
+    font-size: 18px;
+  }
+`
+
+const RowVariants = {
   hidden: {
     x: window.outerWidth + 5,
   },
@@ -80,9 +93,25 @@ const BoxVariants={
   hover:{
     scale:1.3,
     y:-50,
-    type:"tween"
+    transition:{
+      delay:0.5,
+      duration:0.1,
+      type:"tween"
+    }
   }
 }
+
+const InfoVariants={
+  hover:{
+    opacity:1,
+    transition:{
+      delay:0.5,
+      duration:0.1,
+      type:"tween"
+    }
+  }
+}
+
 const offset = 6;
 
 function Home() {
@@ -118,7 +147,7 @@ function Home() {
           <Slider>
             <AnimatePresence initial={false} onExitComplete={toggleLeaving}>
               <Row
-                variants={rowVariants}
+                variants={RowVariants}
                 initial="hidden"
                 animate="visible"
                 exit="exit"
@@ -134,9 +163,8 @@ function Home() {
                       key={movie.id}
                       whileHover="hover"
                       initial="normal"
-                      
                       bgPhoto={makeImagePath(movie.backdrop_path, "w500")}
-                    />
+                    ><Info variants={InfoVariants}><h4>{movie.title}</h4></Info></Box>
                   ))}
               </Row>
             </AnimatePresence>

@@ -9,6 +9,7 @@ interface IMovie {
   backdrop_path: string;
   poster_path: string;
   title: string;
+  name: string;
   overview: string;
   vote_average: string;
 }

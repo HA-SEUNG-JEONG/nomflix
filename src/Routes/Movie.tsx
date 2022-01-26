@@ -50,6 +50,8 @@ const MovieImg = styled(motion.img)`
 `;
 
 const Title = styled.h2`
+  font-family: "Cafe24SsurroundAir";
+  font-style: inherit;
   font-size: 5rem;
   margin-bottom: 20px;
 `;
@@ -78,6 +80,7 @@ const infoVariants = {
 };
 
 const Overview = styled.p`
+  font-family: "Cafe24SsurroundAir";
   font-size: 30px;
   width: 50%;
 `;
@@ -89,6 +92,7 @@ const Slider = styled.div`
 `;
 
 const Row = styled(motion.div)`
+  font-family: "Cafe24SsurroundAir";
   display: grid;
   gap: 0.2rem;
   grid-template-columns: repeat(6, 1fr);
@@ -205,6 +209,8 @@ const RowVariants = {
 };
 
 const SliderTitle = styled.div`
+  font-family: "Cafe24SsurroundAir";
+  font-weight: 600;
   margin-bottom: 2rem;
   margin-left: 4rem;
   font-size: 1.5rem;
@@ -375,6 +381,7 @@ function Movie() {
     history.push("/");
     setDetail(false);
   };
+
   return (
     <Wrapper>
       {isLoading && topIsLoading ? (

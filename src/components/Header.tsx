@@ -37,7 +37,7 @@ const Items = styled.ul`
 `;
 
 const Item = styled.li`
-  margin-right: 20px;
+  margin-right: 1.2rem;
   color: ${(props) => props.theme.white.darker};
   transition: color 0.3s ease-in-out;
   position: relative;
@@ -53,17 +53,18 @@ const Search = styled.form`
   cursor: pointer;
   color: white;
   display: flex;
+  justify-content: flex-start;
   align-items: center;
   position: relative;
   svg {
-    height: 25px;
+    height: 1.2rem;
   }
 `;
 
 const Bar = styled(motion.span)`
   position: absolute;
   width: 100%;
-  height: 5px;
+  height: 0.3rem;
   bottom: -1.5rem;
   left: 0;
   right: 0;
@@ -74,14 +75,18 @@ const Bar = styled(motion.span)`
 const Input = styled(motion.input)`
   transform-origin: right center;
   position: absolute;
-  right: -30px;
-  padding: 5px 10px;
-  padding-left: 40px;
+  right: -1.8rem;
+  padding: 0.3rem 0.6rem;
+  padding-left: 2.5rem;
   z-index: -1;
   color: white;
   font-size: 16px;
   background-color: transparent;
   border: 1px solid ${(props) => props.theme.white.lighter};
+  &::placeholder {
+    position: relative;
+    left: -0.625rem;
+  }
 `;
 
 const logoVariants = {
@@ -176,7 +181,7 @@ function Header() {
         <Search onSubmit={handleSubmit(onValid)}>
           <motion.svg
             onClick={toggleSearch}
-            animate={{ x: searchOpen ? -180 : 0 }}
+            animate={{ x: searchOpen ? -190 : 0 }}
             transition={{ type: "linear" }}
             fill="currentColor"
             viewBox="0 0 20 20"

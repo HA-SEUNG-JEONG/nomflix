@@ -124,7 +124,7 @@ const Info = styled(motion.div)`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0.125rem 1.6rem rgba(0, 0, 0, 0.5);
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
   padding: 1rem;

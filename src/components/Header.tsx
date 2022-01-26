@@ -60,12 +60,11 @@ const Search = styled.form`
   }
 `;
 
-const Circle = styled(motion.span)`
+const Bar = styled(motion.span)`
   position: absolute;
-  width: 5px;
+  width: 100%;
   height: 5px;
-  border-radius: 5px;
-  bottom: -5px;
+  bottom: -1.5rem;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -165,13 +164,11 @@ function Header() {
         <Items>
           <Item>
             <Link to="/">
-              Home {homeMatch?.isExact && <Circle layoutId="circle" />}
+              Movie {homeMatch?.isExact && <Bar layoutId="bar" />}
             </Link>
           </Item>
           <Item>
-            <Link to="/tv">
-              Tv Shows {tvMatch && <Circle layoutId="circle" />}
-            </Link>
+            <Link to="/tv">TV Shows{tvMatch && <Bar layoutId="bar" />}</Link>
           </Item>
         </Items>
       </Col>

@@ -352,7 +352,7 @@ export const Tv = () => {
             <OverView>{data?.results[0].overview}</OverView>
           </Banner>
           <Slider>
-            <SliderTitle>Popular TV</SliderTitle>
+            <SliderTitle>인기 TV 쇼</SliderTitle>
             <Prev whileHover={{ opacity: 1 }} onClick={decreaseIndex}>
               <FontAwesomeIcon icon={faChevronLeft} size="2x" />
             </Prev>
@@ -405,7 +405,7 @@ export const Tv = () => {
           </Slider>
 
           <Slider>
-            <SliderTitle>Top Rated</SliderTitle>
+            <SliderTitle>평점 높은 순</SliderTitle>
             <AnimatePresence onExitComplete={toggleLeaving} initial={false}>
               <Row
                 custom={back}
@@ -507,8 +507,8 @@ export const Tv = () => {
                               </a>
                               <div>
                                 장르 :
-                                {detailData.genres.map((genre) => (
-                                  <span> {genre.name}</span>
+                                {detailData.genres.map((genre, index) => (
+                                  <span key={index}> {genre.name}</span>
                                 ))}
                               </div>
                               <div>

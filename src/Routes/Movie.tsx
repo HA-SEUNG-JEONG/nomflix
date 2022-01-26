@@ -571,8 +571,8 @@ function Movie() {
                               </a>
                               <div>
                                 장르 :{" "}
-                                {detailData.genres.map((genre) => (
-                                  <span>{genre.name} </span>
+                                {detailData.genres.map((genre, index) => (
+                                  <span key={index}>{genre.name} </span>
                                 ))}
                               </div>
                               <div>개봉 일자 : {detailData.release_date}</div>

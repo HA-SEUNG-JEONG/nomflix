@@ -87,7 +87,9 @@ export async function getMovies() {
   //   (response) => response.json()
   // );
   return await (
-    await fetch(`${BASE_URL}/movie/now_playing?api_key=${API_KEY}`)
+    await fetch(
+      `${BASE_URL}/movie/now_playing?api_key=${API_KEY}&language=ko-KR`
+    )
   ).json();
 }
 

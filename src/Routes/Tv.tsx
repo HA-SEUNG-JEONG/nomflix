@@ -14,6 +14,11 @@ import {
   getTopTv,
   IGetTvDetailResult,
 } from "../api";
+import { fas, faStar } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronRight,
+  faChevronLeft,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Wrapper = styled.div`
   background-color: black;
@@ -94,6 +99,19 @@ const Box = styled(motion.div)`
   }
 `;
 
+const Prev = styled(motion.div)`
+  height: 80%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.3;
+  position: absolute;
+  z-index: 10;
+  left: 1rem;
+  top: 7rem;
+`;
+
 const MovieImg = styled(motion.img)`
   border-radius: 0.5rem;
   width: 100%;
@@ -145,6 +163,7 @@ const DetailInfo = styled.div`
   position: relative;
   top: -5.5rem;
   padding: 1.5rem 1.5rem 0 1.5rem;
+  line-height: 1.7;
 `;
 
 const DetailHeader = styled.div`
@@ -241,7 +260,7 @@ const offset = 6;
 
 export const Tv = () => {
   const history = useHistory();
-  const bigTvMatch = useRouteMatch<{ tvId: string }>("/tv/:tvId");
+  const TvMatch = useRouteMatch<{ tvId: string }>("/tv/:tvId");
   const { scrollY } = useViewportScroll();
   const { data, isLoading } = useQuery<IGetMoviesResult>(
     ["tv", "popular"],
@@ -258,8 +277,8 @@ export const Tv = () => {
     isLoading: detailLoading,
     refetch,
   } = useQuery<IGetTvDetailResult>(
-    ["tv", bigTvMatch?.params.tvId],
-    async () => bigTvMatch && getTvDetail(bigTvMatch?.params.tvId),
+    ["tv", TvMatch?.params.tvId],
+    async () => TvMatch && getTvDetail(TvMatch?.params.tvId),
     {
       enabled: false,
       refetchOnWindowFocus: false,
@@ -267,10 +286,10 @@ export const Tv = () => {
   );
 
   useEffect(() => {
-    if (bigTvMatch?.params.tvId) {
+    if (TvMatch?.params.tvId) {
       refetch();
     }
-  }, [bigTvMatch?.params.tvId, refetch]);
+  }, [TvMatch?.params.tvId, refetch]);
 
   const [index, setIndex] = useState(0);
   const [topIndex, setTopIndex] = useState(0);
@@ -301,24 +320,24 @@ export const Tv = () => {
     }
   };
 
-  // const decreaseIndex = () => {
-  //   if (data) {
-  //     if (leaving) return;
-  //     setBack(true);
-  //     toggleLeaving();
-  //     const totalMovies = data.results.length - 1;
-  //     const maxIndex = Math.floor(totalMovies / offset) - 1; // 3
-  //     setIndex((prev) => (prev > 0 ? prev - 1 : maxIndex));
-  //   }
-  // };
+  const decreaseIndex = () => {
+    if (data) {
+      if (leaving) return;
+      setBack(true);
+      toggleLeaving();
+      const totalMovies = data.results.length - 1;
+      const maxIndex = Math.floor(totalMovies / offset) - 1; // 3
+      setIndex((prev) => (prev > 0 ? prev - 1 : maxIndex));
+    }
+  };
 
   const onBoxClicked = (tvId: number) => {
-    history.push(`/maxflix-remaster/tv/${tvId}`);
+    history.push(`/tv/${tvId}`);
     setTimeout(() => setDetail(true), 500); // setDetail 실행 시 애니메이션 효과가 이상해짐
   };
 
   const onOverlayClick = () => {
-    history.push("route.tv");
+    history.push("/tv");
     setDetail(false);
   };
 
@@ -334,9 +353,9 @@ export const Tv = () => {
           </Banner>
           <Slider>
             <SliderTitle>Popular TV</SliderTitle>
-            {/* <Prev whileHover={{ opacity: 1 }} onClick={decreaseIndex}>
-              <FontAwesomeIcon icon={["fas", "chevron-left"]} size="2x" />
-            </Prev> */}
+            <Prev whileHover={{ opacity: 1 }} onClick={decreaseIndex}>
+              <FontAwesomeIcon icon={faChevronLeft} size="2x" />
+            </Prev>
             <AnimatePresence onExitComplete={toggleLeaving} initial={false}>
               <Row
                 custom={back}
@@ -369,7 +388,7 @@ export const Tv = () => {
                         <MovieTitle>{movie.name}</MovieTitle>
                         <MovieVote>
                           <FontAwesomeIcon
-                            icon={["fas", "star"]}
+                            icon={faStar}
                             size="xs"
                             color="orange"
                           />
@@ -381,7 +400,7 @@ export const Tv = () => {
               </Row>
             </AnimatePresence>
             <Next whileHover={{ opacity: 1 }} onClick={increaseIndex}>
-              <FontAwesomeIcon icon={["fas", "chevron-right"]} size="2x" />
+              <FontAwesomeIcon icon={faChevronRight} size="2x" />
             </Next>
           </Slider>
 
@@ -422,7 +441,7 @@ export const Tv = () => {
                         <MovieTitle>{movie.name}</MovieTitle>
                         <MovieVote>
                           <FontAwesomeIcon
-                            icon={["fas", "star"]}
+                            icon={faStar}
                             size="xs"
                             color="orange"
                           />
@@ -434,7 +453,7 @@ export const Tv = () => {
               </Row>
             </AnimatePresence>
             <Next whileHover={{ opacity: 1 }} onClick={increaseTopIndex}>
-              <FontAwesomeIcon icon={["fas", "chevron-right"]} size="2x" />
+              <FontAwesomeIcon icon={faChevronRight} size="2x" />
             </Next>
           </Slider>
 
@@ -442,7 +461,7 @@ export const Tv = () => {
             {detailLoading ? (
               <Loader>Loading...</Loader>
             ) : (
-              bigTvMatch && (
+              TvMatch && (
                 <>
                   <Overlay
                     onClick={onOverlayClick}
@@ -451,7 +470,7 @@ export const Tv = () => {
                   />
                   <BigMovieDetail
                     style={{ top: scrollY.get() + 50 }}
-                    layoutId={bigTvMatch.params.tvId}
+                    layoutId={TvMatch.params.tvId}
                   >
                     {detailData && (
                       <>
@@ -487,19 +506,22 @@ export const Tv = () => {
                                 {detailData.homepage}
                               </a>
                               <div>
-                                장르 :{" "}
+                                장르 :
                                 {detailData.genres.map((genre) => (
-                                  <span>{genre.name} </span>
+                                  <span> {genre.name}</span>
                                 ))}
                               </div>
                               <div>
                                 첫 방영 일자 : {detailData.first_air_date}
                               </div>
                               <div>
-                                방영 시간 :{" "}
-                                {detailData.episode_run_time.map((time) => (
-                                  <span>{time} 분</span>
-                                ))}
+                                방영 시간 : {detailData.episode_run_time} 시간,{" "}
+                                {detailData.number_of_episodes}개의 에피소드
+                                {/* {detailData.episode_run_time.map((time) => (
+                                  <span>
+                                    {Math.ceil(time / 60)} Hour {time} minutes
+                                  </span>
+                                ))} */}
                               </div>
                             </DetailSection>
                           </DetailBody>

@@ -1,5 +1,8 @@
 import { atom } from "recoil";
 
+/**
+ * Movie Detail of atom
+ */
 export const isDetail = atom({
   key: "movieDetail",
   default: false,

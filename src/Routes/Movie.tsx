@@ -8,20 +8,19 @@ import {
   IGetMovieDetailResult,
   getMovieDetail,
   DEFAULT_IMG,
-} from "./../api";
-import { makeImagePath } from "./../utilities";
+} from "../api";
+import { makeImagePath } from "../utilities";
 import { useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import { useEffect } from "react";
 import { useSetRecoilState } from "recoil";
-import { isDetail } from "./../atom";
+import { isDetail } from "../atom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
-import { Helmet } from "react-helmet";
 
 const Wrapper = styled.div`
   background: black;
@@ -130,6 +129,7 @@ const BigMovieDetail = styled(motion.div)`
 const BigCover = styled.div`
   width: 100%;
   height: 35%;
+
   background-size: cover;
   background-position: center center;
   height: 500px;
@@ -139,7 +139,7 @@ const DetailInfo = styled.div`
   color: ${(props) => props.theme.white.lighter};
   position: relative;
   top: -5rem;
-  padding: 1.5rem 0.9rem 0 0.9rem;
+  padding: 1.5rem 1.5rem 1.5rem 0.9rem;
   height: 50%;
 `;
 
@@ -260,12 +260,12 @@ const BoxVariants = {
 
 const offset = 6;
 
-function Home() {
+function Movie() {
   const history = useHistory();
   const MovieMatch = useRouteMatch<{ movieId: string }>("/movies/:movieId");
   const { scrollY } = useViewportScroll();
   const { data, isLoading, hasNextPage, fetchNextPage } =
-    useInfiniteQuery<IGetMoviesResult>(["movies", "nowPlaying"], getMovies, {
+    useInfiniteQuery<IGetMoviesResult>(["movies", "now_playing"], getMovies, {
       getNextPageParam: (currentPage) => {
         const nextPage = currentPage.page + 1;
         return nextPage > currentPage.total_pages ? null : nextPage;
@@ -274,11 +274,11 @@ function Home() {
 
   const {
     data: topData,
-    isLoading: topLoading,
+    isLoading: topIsLoading,
     hasNextPage: topHasNextPage,
     fetchNextPage: topHasfecthNextPage,
   } = useInfiniteQuery<IGetMoviesResult>(
-    ["movies", "topRated"],
+    ["movies", "top_rated"],
     getTopRatedMovies,
     {
       getNextPageParam: (currentPage) => {
@@ -351,8 +351,7 @@ function Home() {
       if (leaving) return;
       setBack(true);
       toggleLeaving();
-      const totalMovie =
-        data.pages.map((page) => page.results).flat().length - 1;
+      const totalMovie = data.pages.map((page) => page.results).length - 1;
       const maxIndex = Math.floor(totalMovie / offset) - 1;
       setIndex((prev) => (prev === 0 ? maxIndex : prev - 1));
     }
@@ -363,8 +362,7 @@ function Home() {
       if (leaving) return;
       setBack(true);
       toggleLeaving();
-      const totalMovie =
-        topData.pages.map((page) => page.results).flat().length - 1;
+      const totalMovie = topData.pages.map((page) => page.results).length - 1;
       const maxIndex = Math.floor(totalMovie / offset) - 1;
       setTopIndex((prev) => (prev === 0 ? maxIndex : prev - 1));
     }
@@ -379,10 +377,7 @@ function Home() {
   };
   return (
     <Wrapper>
-      <Helmet>
-        <title>Nomflix</title>
-      </Helmet>
-      {isLoading && topLoading ? (
+      {isLoading && topIsLoading ? (
         <Loader>Loading...</Loader>
       ) : (
         <>
@@ -599,4 +594,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Movie;

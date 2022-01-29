@@ -124,7 +124,7 @@ const Info = styled(motion.div)`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  box-shadow: 0px 0.125rem 1.6rem rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0.125rem 25px rgba(0, 0, 0, 0.5);
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
   padding: 1rem;
@@ -144,7 +144,7 @@ const BigMovieDetail = styled(motion.div)`
   border-radius: 1rem;
   overflow: hidden;
   width: 40vw;
-  height: 90vh;
+  height: auto;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -326,14 +326,14 @@ export const Tv = () => {
       setBack(true);
       toggleLeaving();
       const totalMovies = data.results.length - 1;
-      const maxIndex = Math.floor(totalMovies / offset) - 1; // 3
+      const maxIndex = Math.floor(totalMovies / offset) - 1;
       setIndex((prev) => (prev > 0 ? prev - 1 : maxIndex));
     }
   };
 
   const onBoxClicked = (tvId: number) => {
     history.push(`/tv/${tvId}`);
-    setTimeout(() => setDetail(true), 500); // setDetail 실행 시 애니메이션 효과가 이상해짐
+    setTimeout(() => setDetail(true), 500);
   };
 
   const onOverlayClick = () => {

@@ -14,6 +14,8 @@ import { useSetRecoilState } from "recoil";
 import { isDetail } from "../atom";
 import { DEFAULT_IMG, searchMovie, searchTv } from "../api";
 import { useLocation } from "react-router";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const Wrapper = styled.div`
   background-color: black;
@@ -307,7 +309,7 @@ export const Search = () => {
 
   const onBoxClicked = (movieId: number) => {
     history.push(`/movies/${movieId}`);
-    setTimeout(() => setDetail(true), 500); // setDetail 실행 시 애니메이션 효과가 이상해짐
+    setTimeout(() => setDetail(true), 500);
   };
 
   const onOverlayClick = () => {
@@ -315,7 +317,6 @@ export const Search = () => {
     setDetail(false);
   };
 
-  console.log(movieData);
   return (
     <Wrapper>
       {movieLoading && tvLoading ? (
@@ -333,7 +334,7 @@ export const Search = () => {
                 <OverView>{movieData?.results[0].overview}</OverView>
               </Banner>
               <Slider>
-                <SliderTitle>{keyword} 영화</SliderTitle>
+                <SliderTitle>{keyword}으로 찾은 영화</SliderTitle>
 
                 <AnimatePresence onExitComplete={toggleLeaving} initial={false}>
                   <Row
@@ -366,7 +367,7 @@ export const Search = () => {
                             <MovieTitle>{movie.title}</MovieTitle>
                             <MovieVote>
                               <FontAwesomeIcon
-                                icon={["fas", "star"]}
+                                icon={faStar}
                                 size="xs"
                                 color="orange"
                               />
@@ -378,7 +379,7 @@ export const Search = () => {
                   </Row>
                 </AnimatePresence>
                 <Next whileHover={{ opacity: 1 }} onClick={increaseIndex}>
-                  <FontAwesomeIcon icon={["fas", "chevron-right"]} size="2x" />
+                  <FontAwesomeIcon icon={faChevronRight} size="2x" />
                 </Next>
               </Slider>
             </>
@@ -386,7 +387,7 @@ export const Search = () => {
           {tvData && tvData.total_results > 0 && (
             <>
               <Slider>
-                <SliderTitle>{keyword} TV 시리즈</SliderTitle>
+                <SliderTitle>{keyword}으로 찾은 TV 시리즈</SliderTitle>
                 <AnimatePresence onExitComplete={toggleLeaving} initial={false}>
                   <Row
                     custom={back}
@@ -422,7 +423,7 @@ export const Search = () => {
                             <MovieTitle>{movie.name}</MovieTitle>
                             <MovieVote>
                               <FontAwesomeIcon
-                                icon={["fas", "star"]}
+                                icon={faStar}
                                 size="xs"
                                 color="orange"
                               />
@@ -434,7 +435,7 @@ export const Search = () => {
                   </Row>
                 </AnimatePresence>
                 <Next whileHover={{ opacity: 1 }} onClick={increaseTopIndex}>
-                  <FontAwesomeIcon icon={["fas", "chevron-right"]} size="2x" />
+                  <FontAwesomeIcon icon={faChevronRight} size="2x" />
                 </Next>
               </Slider>
             </>

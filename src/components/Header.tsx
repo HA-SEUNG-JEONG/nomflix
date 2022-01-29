@@ -199,6 +199,7 @@ function Header() {
                 clipRule="evenodd"
               ></path>
             </motion.svg>
+
             <Input
               {...register("keyword", { required: true, minLength: 2 })}
               animate={inputAnimation}

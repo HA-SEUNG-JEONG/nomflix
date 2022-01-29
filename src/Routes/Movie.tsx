@@ -123,7 +123,8 @@ const BigMovieDetail = styled(motion.div)`
   border-radius: 1rem;
   overflow: auto;
   width: 47vw;
-  height: 90vh;
+  height: 100vh;
+  top: 10px;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -133,7 +134,6 @@ const BigMovieDetail = styled(motion.div)`
 const BigCover = styled.div`
   width: 100%;
   height: 35%;
-
   background-size: cover;
   background-position: center center;
   height: 500px;

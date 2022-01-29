@@ -71,6 +71,7 @@ const Bar = styled(motion.span)`
   right: 0;
   margin: 0 auto;
   background-color: ${(props) => props.theme.red};
+  border-radius: 0.9rem;
 `;
 
 const Input = styled(motion.input)`
@@ -125,12 +126,10 @@ function Header() {
   const { scrollY } = useViewportScroll();
   const toggleSearch = () => {
     if (searchOpen) {
-      //trigger close animation
       inputAnimation.start({
         scaleX: 0,
       });
     } else {
-      //trigger open animation
       inputAnimation.start({
         scaleX: 1,
       });

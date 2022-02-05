@@ -15,27 +15,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { getUpcomingMovies } from "./../../api";
 
-const Wrapper = styled.div`
-  background: black;
-`;
-
-const Loader = styled.div`
-  height: 20vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Banner = styled.div<{ bgphoto: string }>`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 60px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)),
-    url(${(props) => props.bgphoto});
-  background-size: cover;
-`;
 const MovieTitle = styled.div``;
 
 const MovieImg = styled(motion.img)`

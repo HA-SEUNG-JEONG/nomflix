@@ -1,19 +1,11 @@
-import { motion, AnimatePresence, useViewportScroll } from "framer-motion";
-import { useInfiniteQuery, useQuery } from "react-query";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInfiniteQuery } from "react-query";
 import styled from "styled-components";
-import {
-  getMovies,
-  IGetMoviesResult,
-  IGetMovieDetailResult,
-  getMovieDetail,
-  DEFAULT_IMG,
-} from "../../api";
+import { getMovies, IGetMoviesResult, DEFAULT_IMG } from "../../api";
 import { makeImagePath } from "../../utilities";
 import { useState } from "react";
-import { useHistory, useRouteMatch } from "react-router-dom";
-import { useEffect } from "react";
-import { useSetRecoilState } from "recoil";
-import { isDetail } from "../../atom";
+import { useHistory } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
@@ -23,6 +15,7 @@ import {
 
 import TopMovie from "./TopMovie";
 import UpcomingMovie from "./UpcomingMovie";
+import DetailMovie from "./DetailMovie";
 
 const Wrapper = styled.div`
   background: black;
@@ -199,8 +192,6 @@ const offset = 6;
 
 function Movie() {
   const history = useHistory();
-  const MovieMatch = useRouteMatch<{ movieId: string }>("/movies/:movieId");
-  const { scrollY } = useViewportScroll();
   const { data, isLoading, hasNextPage, fetchNextPage } =
     useInfiniteQuery<IGetMoviesResult>(["movies", "now_playing"], getMovies, {
       getNextPageParam: (currentPage) => {
@@ -281,7 +272,6 @@ function Movie() {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                transition={{ ease: "easeInOut", duration: 1 }}
                 key={index}
               >
                 {data?.pages
@@ -331,6 +321,7 @@ function Movie() {
 
           <TopMovie />
           <UpcomingMovie />
+          <DetailMovie />
         </>
       )}
     </Wrapper>

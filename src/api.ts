@@ -105,6 +105,13 @@ export const getPopularMovies = () => {
   ).then((response) => response.json());
 };
 
+export const getUpcomingMovies = () => {
+  return fetch(`
+  ${BASE_URL}/movie/upcoming?api_key=${API_KEY}&language=ko-KR&page=1&region=KR`).then(
+    (response) => response.json()
+  );
+};
+
 export const getMovieDetail = (movieId: string) => {
   return fetch(
     `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&language=ko-KR&append_to_response=KR`

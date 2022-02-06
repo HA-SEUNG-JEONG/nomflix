@@ -263,7 +263,13 @@ export const Tv = () => {
   const { scrollY } = useViewportScroll();
   const { data, isLoading } = useInfiniteQuery<IGetTvResult>(
     ["tv", "airing_today"],
-    getAiringTodayTv
+    getAiringTodayTv,
+    {
+      getNextPageParam: (currentPage) => {
+        const nextPage = currentPage.page + 1;
+        return nextPage > currentPage.total_pages ? null : nextPage;
+      },
+    }
   );
 
   const {
@@ -344,7 +350,7 @@ export const Tv = () => {
             </OverView>
           </Banner>
           <Slider>
-            <SliderTitle>상영 중인 영화</SliderTitle>
+            <SliderTitle>Airing</SliderTitle>
             <Prev whileHover={{ opacity: 1 }} onClick={decreaseIndex}>
               <FontAwesomeIcon icon={faChevronLeft} size="2x" />
             </Prev>

@@ -149,14 +149,14 @@ export const getTopTv = () => {
 
 export const getAiringTodayTv = () => {
   return fetch(
-    `${BASE_URL}/tv/airing_today?api_key=${API_KEY}&language=ko-kR&page=1&region=KR`
+    `${BASE_URL}/tv/airing_today?api_key=${API_KEY}&language=ko-KR&page=1&region=KR`
   ).then((response) => response.json());
 };
 
 export const getLatestTv = () => {
-  return fetch(`${BASE_URL}/tv/latest?api_key=${API_KEY}&language=en-US`).then(
-    (response) => response.json()
-  );
+  return fetch(
+    `${BASE_URL}/tv/latest?api_key=${API_KEY}&language=ko-KR&page=1&region=KR`
+  ).then((response) => response.json());
 };
 
 export const getTvDetail = (tvId: string) => {

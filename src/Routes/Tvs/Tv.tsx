@@ -53,7 +53,7 @@ const OverView = styled.p`
 
 const Slider = styled.div`
   position: relative;
-  top: -9.3rem;
+  top: -11.3rem;
   margin-bottom: 15rem;
 `;
 

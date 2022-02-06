@@ -41,6 +41,7 @@ const Banner = styled.div<{ bgphoto: string }>`
 const MovieTitle = styled.div``;
 
 const MovieImg = styled(motion.img)`
+  border-radius: 0.5rem;
   width: 100%;
 `;
 
@@ -82,7 +83,7 @@ const Overview = styled.p`
 
 const Slider = styled.div`
   position: relative;
-  top: -9.3rem;
+  top: -12.3rem;
   margin-bottom: 15rem;
 `;
 
@@ -315,7 +316,14 @@ function Movie() {
               </Row>
             </AnimatePresence>
             <Next whileHover={{ opacity: 1 }} onClick={increaseIndex}>
-              <FontAwesomeIcon icon={faChevronRight} size="2x" />
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                size="2x"
+                style={{
+                  position: "relative",
+                  bottom: "-5rem",
+                }}
+              />
             </Next>
           </Slider>
 

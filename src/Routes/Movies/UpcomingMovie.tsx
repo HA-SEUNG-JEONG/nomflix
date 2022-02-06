@@ -18,6 +18,7 @@ import { getUpcomingMovies } from "./../../api";
 const MovieTitle = styled.div``;
 
 const MovieImg = styled(motion.img)`
+  border-radius: 0.5rem;
   width: 100%;
 `;
 
@@ -57,7 +58,7 @@ const Loader = styled.div`
 
 const Slider = styled.div`
   position: relative;
-  top: -9.3rem;
+  top: 10.3rem;
   margin-bottom: 15rem;
 `;
 
@@ -229,7 +230,14 @@ function UpcomingMovie() {
         <Slider>
           <SliderTitle>개봉 예정</SliderTitle>
           <Prev whileHover={{ opacity: 1 }} onClick={decreaseUpcomingIndex}>
-            <FontAwesomeIcon icon={faChevronLeft} size="2x" />
+            <FontAwesomeIcon
+              icon={faChevronLeft}
+              size="2x"
+              style={{
+                position: "relative",
+                bottom: "-5rem",
+              }}
+            />
           </Prev>
           <AnimatePresence
             custom={back}
@@ -285,7 +293,14 @@ function UpcomingMovie() {
             </Row>
           </AnimatePresence>
           <Next whileHover={{ opacity: 1 }} onClick={increaseUpcomingIndex}>
-            <FontAwesomeIcon icon={faChevronRight} size="2x" />
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              size="2x"
+              style={{
+                position: "relative",
+                bottom: "-5rem",
+              }}
+            />
           </Next>
         </Slider>
       )}

@@ -27,6 +27,7 @@ const Loader = styled.div`
 const MovieTitle = styled.div``;
 
 const MovieImg = styled(motion.img)`
+  border-radius: 0.5rem;
   width: 100%;
 `;
 
@@ -55,7 +56,7 @@ const infoVariants = {
 
 const Slider = styled.div`
   position: relative;
-  top: -9.3rem;
+  top: -2.3rem;
   margin-bottom: 15rem;
 `;
 
@@ -225,7 +226,14 @@ function TopMovie() {
           <Slider>
             <SliderTitle>평점 높은 순</SliderTitle>
             <Prev whileHover={{ opacity: 1 }} onClick={decreaseTopIndex}>
-              <FontAwesomeIcon icon={faChevronLeft} size="2x" />
+              <FontAwesomeIcon
+                icon={faChevronLeft}
+                size="2x"
+                style={{
+                  position: "relative",
+                  bottom: "-5rem",
+                }}
+              />
             </Prev>
             <AnimatePresence
               custom={back}
@@ -281,7 +289,14 @@ function TopMovie() {
               </Row>
             </AnimatePresence>
             <Next whileHover={{ opacity: 1 }} onClick={increaseTopIndex}>
-              <FontAwesomeIcon icon={faChevronRight} size="2x" />
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                size="2x"
+                style={{
+                  position: "relative",
+                  bottom: "-5rem",
+                }}
+              />
             </Next>
           </Slider>
         </>

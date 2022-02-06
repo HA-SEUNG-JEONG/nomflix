@@ -44,6 +44,17 @@ const infoVariants = {
   },
 };
 
+const Wrapper = styled.div`
+  background: black;
+`;
+
+const Loader = styled.div`
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Slider = styled.div`
   position: relative;
   top: -9.3rem;
@@ -211,64 +222,74 @@ function UpcomingMovie() {
   };
 
   return (
-    <Slider>
-      <SliderTitle>개봉 예정</SliderTitle>
-      <Prev whileHover={{ opacity: 1 }} onClick={decreaseUpcomingIndex}>
-        <FontAwesomeIcon icon={faChevronLeft} size="2x" />
-      </Prev>
-      <AnimatePresence
-        custom={back}
-        onExitComplete={toggleLeaving}
-        initial={false}
-      >
-        <Row
-          custom={back}
-          variants={RowVariants}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-          transition={{ type: "tween", duration: 1 }}
-          key={upcomingIndex}
-        >
-          {upcomingData?.pages
-            .map((page) => page.results)
-            .flat()
-            .slice(offset * upcomingIndex, offset * upcomingIndex + offset)
-            .map((movie) => (
-              <Box
-                layoutId={movie.id + ""}
-                key={movie.id}
-                variants={BoxVariants}
-                whileHover="hover"
-                initial="normal"
-                transition={{ type: "tween" }}
-                onClick={() => onClickedBox(movie.id)}
-                bgphoto={makeImagePath(movie.backdrop_path, "w500")}
-              >
-                <MovieImg
-                  variants={movieImgVariants}
-                  src={
-                    movie.backdrop_path
-                      ? makeImagePath(movie.backdrop_path, "w500")
-                      : DEFAULT_IMG
-                  }
-                />
+    <Wrapper>
+      {upcomingIsLoading ? (
+        <Loader>Loading</Loader>
+      ) : (
+        <Slider>
+          <SliderTitle>개봉 예정</SliderTitle>
+          <Prev whileHover={{ opacity: 1 }} onClick={decreaseUpcomingIndex}>
+            <FontAwesomeIcon icon={faChevronLeft} size="2x" />
+          </Prev>
+          <AnimatePresence
+            custom={back}
+            onExitComplete={toggleLeaving}
+            initial={false}
+          >
+            <Row
+              custom={back}
+              variants={RowVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              transition={{ type: "tween", duration: 1 }}
+              key={upcomingIndex}
+            >
+              {upcomingData?.pages
+                .map((page) => page.results)
+                .flat()
+                .slice(offset * upcomingIndex, offset * upcomingIndex + offset)
+                .map((movie) => (
+                  <Box
+                    layoutId={movie.id + ""}
+                    key={movie.id}
+                    variants={BoxVariants}
+                    whileHover="hover"
+                    initial="normal"
+                    transition={{ type: "tween" }}
+                    onClick={() => onClickedBox(movie.id)}
+                    bgphoto={makeImagePath(movie.backdrop_path, "w500")}
+                  >
+                    <MovieImg
+                      variants={movieImgVariants}
+                      src={
+                        movie.backdrop_path
+                          ? makeImagePath(movie.backdrop_path, "w500")
+                          : DEFAULT_IMG
+                      }
+                    />
 
-                <Info variants={infoVariants}>
-                  <MovieTitle>{movie.title}</MovieTitle>
-                  <MovieVote>
-                    <FontAwesomeIcon icon={faStar} size="xs" color="orange" />
-                    <div>{movie.vote_average}</div>
-                  </MovieVote>
-                </Info>
-              </Box>
-            ))}
-        </Row>
-      </AnimatePresence>
-      <Next whileHover={{ opacity: 1 }} onClick={increaseUpcomingIndex}>
-        <FontAwesomeIcon icon={faChevronRight} size="2x" />
-      </Next>
-    </Slider>
+                    <Info variants={infoVariants}>
+                      <MovieTitle>{movie.title}</MovieTitle>
+                      <MovieVote>
+                        <FontAwesomeIcon
+                          icon={faStar}
+                          size="xs"
+                          color="orange"
+                        />
+                        <div>{movie.vote_average}</div>
+                      </MovieVote>
+                    </Info>
+                  </Box>
+                ))}
+            </Row>
+          </AnimatePresence>
+          <Next whileHover={{ opacity: 1 }} onClick={increaseUpcomingIndex}>
+            <FontAwesomeIcon icon={faChevronRight} size="2x" />
+          </Next>
+        </Slider>
+      )}
+    </Wrapper>
   );
 }
 

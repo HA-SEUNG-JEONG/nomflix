@@ -229,7 +229,7 @@ function Movie() {
       toggleLeaving();
       const totalMovie = data.pages.map((page) => page.results).length - 1;
       const maxIndex = Math.floor(totalMovie / offset) - 1;
-      setIndex((prev) => (prev === 0 ? maxIndex : prev - 1));
+      setIndex((prev) => (prev === maxIndex ? 0 : prev - 1));
     }
   };
 

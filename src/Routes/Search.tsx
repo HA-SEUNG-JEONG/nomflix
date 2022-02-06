@@ -319,8 +319,8 @@ export const Search = () => {
 
   return (
     <Wrapper>
-      {movieLoading && tvLoading ? (
-        <Loader>Loading...</Loader>
+      {movieLoading && tvLoading && movieData?.results && tvData?.results ? (
+        <Loader>검색 결과가 없습니다.</Loader>
       ) : movieData || tvData ? (
         <>
           {movieData && movieData.total_results > 0 && (
@@ -334,7 +334,7 @@ export const Search = () => {
                 <OverView>{movieData?.results[0].overview}</OverView>
               </Banner>
               <Slider>
-                <SliderTitle>{keyword}으로 찾은 영화</SliderTitle>
+                <SliderTitle>{keyword}로 찾은 영화</SliderTitle>
 
                 <AnimatePresence onExitComplete={toggleLeaving} initial={false}>
                   <Row
@@ -387,7 +387,7 @@ export const Search = () => {
           {tvData && tvData.total_results > 0 && (
             <>
               <Slider>
-                <SliderTitle>{keyword}으로 찾은 TV 시리즈</SliderTitle>
+                <SliderTitle>{keyword}로 찾은 TV 시리즈</SliderTitle>
                 <AnimatePresence onExitComplete={toggleLeaving} initial={false}>
                   <Row
                     custom={back}

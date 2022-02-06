@@ -258,13 +258,13 @@ function UpcomingMovie() {
                     initial="normal"
                     transition={{ type: "tween" }}
                     onClick={() => onClickedBox(movie.id)}
-                    bgphoto={makeImagePath(movie.backdrop_path, "w500")}
+                    bgphoto={makeImagePath(movie.poster_path, "w500")}
                   >
                     <MovieImg
                       variants={movieImgVariants}
                       src={
-                        movie.backdrop_path
-                          ? makeImagePath(movie.backdrop_path, "w500")
+                        movie.poster_path
+                          ? makeImagePath(movie.poster_path, "w500")
                           : DEFAULT_IMG
                       }
                     />

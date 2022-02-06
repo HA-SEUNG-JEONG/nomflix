@@ -234,8 +234,8 @@ function TopTv() {
                     <MovieImg
                       variants={movieImgVariants}
                       src={
-                        tv.backdrop_path
-                          ? makeImagePath(tv.backdrop_path, "w500")
+                        tv.poster_path
+                          ? makeImagePath(tv.poster_path, "w500")
                           : DEFAULT_IMG
                       }
                     />

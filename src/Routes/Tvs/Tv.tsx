@@ -29,6 +29,7 @@ const Loader = styled(motion.div)`
 `;
 
 const Banner = styled.div<{ bgPhoto: string }>`
+  font-family: "Cafe24SsurroundAir";
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -143,7 +144,7 @@ const BigMovieDetail = styled(motion.div)`
   border-radius: 1rem;
   overflow: hidden;
   width: 40vw;
-  height: auto;
+  height: 90vh;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -153,16 +154,21 @@ const BigMovieDetail = styled(motion.div)`
 const BigCover = styled.div`
   width: 100%;
   height: 35%;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  aspect-ratio: 16/9;
   background-size: cover;
   background-position: center center;
 `;
 
 const DetailInfo = styled.div`
+  font-family: "Cafe24SsurroundAir";
   color: ${(props) => props.theme.white.lighter};
   position: relative;
   top: -5.5rem;
   padding: 1.5rem 1.5rem 0 1.5rem;
-  line-height: 1.7;
 `;
 
 const DetailHeader = styled.div`
@@ -254,7 +260,6 @@ const infoVariants = {
     },
   },
 };
-
 const offset = 6;
 
 export const Tv = () => {
@@ -350,7 +355,7 @@ export const Tv = () => {
             </OverView>
           </Banner>
           <Slider>
-            <SliderTitle>Airing</SliderTitle>
+            <SliderTitle>방영중인 프로그램</SliderTitle>
             <Prev whileHover={{ opacity: 1 }} onClick={decreaseIndex}>
               <FontAwesomeIcon icon={faChevronLeft} size="2x" />
             </Prev>
@@ -384,9 +389,9 @@ export const Tv = () => {
                       <MovieImg
                         variants={movieImgVariants}
                         src={
-                          movie.backdrop_path
-                            ? makeImagePath(movie.backdrop_path, "w500")
-                            : DEFAULT_IMG
+                          movie.poster_path
+                            ? makeImagePath(movie.poster_path, "w500")
+                            : ""
                         }
                       />
 
@@ -409,9 +414,8 @@ export const Tv = () => {
               <FontAwesomeIcon icon={faChevronRight} size="2x" />
             </Next>
           </Slider>
-
-          <TopTv />
           <PopularTv />
+          <TopTv />
 
           <AnimatePresence>
             {detailLoading ? (
@@ -453,14 +457,26 @@ export const Tv = () => {
                               }}
                             />
                             <DetailSection>
-                              <div>{detailData.overview}</div>
-                              <a
-                                href={`${detailData.homepage}`}
-                                target="_blank"
-                                rel="noreferrer"
+                              <div style={{ marginBottom: "1rem" }}>
+                                {detailData.overview}
+                              </div>
+                              <button
+                                style={{
+                                  marginBottom: "1rem",
+                                  backgroundColor: "yellow",
+                                  borderRadius: "0.5rem",
+                                  fontWeight: "600",
+                                  padding: "0.5rem",
+                                }}
                               >
-                                {detailData.homepage}
-                              </a>
+                                <a
+                                  href={`${detailData.homepage}`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  Main Page
+                                </a>
+                              </button>
                               <div>
                                 장르 :
                                 {detailData.genres.map((genre, index) => (

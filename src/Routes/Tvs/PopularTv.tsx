@@ -221,34 +221,34 @@ function PopularTv() {
                 .map((page) => page.results)
                 .flat()
                 .slice(offset * popularIndex, offset * popularIndex + offset)
-                .map((tv) => (
+                .map((movie) => (
                   <Box
-                    layoutId={tv.id + ""}
-                    key={tv.id}
+                    layoutId={movie.id + ""}
+                    key={movie.id}
                     variants={boxVariants}
                     whileHover="hover"
                     initial="normal"
                     transition={{ type: "tween" }}
-                    onClick={() => onClickedBox(tv.id)}
+                    onClick={() => onClickedBox(movie.id)}
                   >
                     <MovieImg
                       variants={movieImgVariants}
                       src={
-                        tv.backdrop_path
-                          ? makeImagePath(tv.backdrop_path, "w500")
+                        movie.poster_path
+                          ? makeImagePath(movie.poster_path, "w500")
                           : DEFAULT_IMG
                       }
                     />
 
                     <Info variants={infoVariants}>
-                      <MovieTitle>{tv.name}</MovieTitle>
+                      <MovieTitle>{movie.name}</MovieTitle>
                       <MovieVote>
                         <FontAwesomeIcon
                           icon={faStar}
                           size="xs"
                           color="orange"
                         />
-                        <div>{tv.vote_average}</div>
+                        <div>{movie.vote_average}</div>
                       </MovieVote>
                     </Info>
                   </Box>

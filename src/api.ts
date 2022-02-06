@@ -136,26 +136,20 @@ export const getMovieDetail = (movieId: string) => {
 };
 
 export const getPopularTv = () => {
+  return fetch(`${BASE_URL}/tv/popular?api_key=${API_KEY}&language=ko-KR`).then(
+    (response) => response.json()
+  );
+};
+
+export const getAiringTodayTv = () => {
   return fetch(
-    `${BASE_URL}/tv/popular?api_key=${API_KEY}&language=ko-KR&page=1&region=KR`
+    `${BASE_URL}/tv/airing_today?api_key=${API_KEY}&language=ko-KR`
   ).then((response) => response.json());
 };
 
 export const getTopTv = () => {
   return fetch(
     `${BASE_URL}/tv/top_rated?api_key=${API_KEY}&language=ko-KR&page=1&region=KR`
-  ).then((response) => response.json());
-};
-
-export const getAiringTodayTv = () => {
-  return fetch(
-    `${BASE_URL}/tv/airing_today?api_key=${API_KEY}&language=ko-KR&page=1&region=KR`
-  ).then((response) => response.json());
-};
-
-export const getLatestTv = () => {
-  return fetch(
-    `${BASE_URL}/tv/latest?api_key=${API_KEY}&language=ko-KR&page=1&region=KR`
   ).then((response) => response.json());
 };
 

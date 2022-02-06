@@ -293,8 +293,8 @@ function Movie() {
                       <MovieImg
                         variants={movieImgVariants}
                         src={
-                          movie.backdrop_path
-                            ? makeImagePath(movie.backdrop_path, "w500")
+                          movie.poster_path
+                            ? makeImagePath(movie.poster_path, "w500")
                             : DEFAULT_IMG
                         }
                       />

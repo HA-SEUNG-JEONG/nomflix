@@ -14,6 +14,16 @@ interface IMovie {
   vote_average: string;
 }
 
+interface ITv {
+  id: number;
+  backdrop_path: string;
+  poster_path: string;
+  original_name: string;
+  name: string;
+  vote_average: string;
+  overview: string;
+}
+
 /**
  * Result of `getMovies`
  */
@@ -24,6 +34,13 @@ export interface IGetMoviesResult {
   };
   page: number;
   results: IMovie[];
+  total_pages: number;
+  total_results: number;
+}
+
+export interface IGetTvResult {
+  page: number;
+  results: ITv[];
   total_pages: number;
   total_results: number;
 }
@@ -128,6 +145,18 @@ export const getTopTv = () => {
   return fetch(
     `${BASE_URL}/tv/top_rated?api_key=${API_KEY}&language=ko-KR&page=1&region=KR`
   ).then((response) => response.json());
+};
+
+export const getAiringTodayTv = () => {
+  return fetch(
+    `${BASE_URL}/tv/airing_today?api_key=${API_KEY}&language=ko-kR&page=1&region=KR`
+  ).then((response) => response.json());
+};
+
+export const getLatestTv = () => {
+  return fetch(`${BASE_URL}/tv/latest?api_key=${API_KEY}&language=en-US`).then(
+    (response) => response.json()
+  );
 };
 
 export const getTvDetail = (tvId: string) => {

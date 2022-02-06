@@ -8,6 +8,11 @@ export const isDetail = atom({
   default: false,
 });
 
+export const isTvDetail = atom({
+  key: "tvDetail",
+  default: false,
+});
+
 export const GlobalSearchClose = atom({
   key: "searchClose",
   default: false,

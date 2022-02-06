@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const Nav = styled(motion.nav)`
+  font-family: "Cafe24SsurroundAir";
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -150,6 +151,9 @@ function Header() {
   const { register, setValue, handleSubmit } = useForm<IForm>();
   const onValid = (data: IForm) => {
     history.push(`/search?keyword=${data.keyword}`);
+    // if (typeof data !== "string") {
+    //   history.push("/");
+    // }
     setValue("keyword", "");
   };
   const onClickedLogo = () => {

@@ -171,9 +171,8 @@ function PopularTv() {
 
   const { data: popularData, isLoading: popularLoading } =
     useInfiniteQuery<IGetTvResult>(["tv", "popular"], getPopularTv);
-  // console.log(popularData);
 
-  const increaseTopIndex = () => {
+  const increasePopularIndex = () => {
     if (popularData) {
       if (leaving) return;
       setBack(false);
@@ -183,15 +182,14 @@ function PopularTv() {
       setpopularIndex((prev) => (prev === maxIndex ? 0 : prev + 1));
     }
   };
-  const decreaseTopIndex = () => {
+  const decreasePopularIndex = () => {
     if (popularData) {
       if (leaving) return;
       setBack(true);
       toggleLeaving();
       const totalTv = popularData.pages.map((page) => page.results).length - 1;
-
       const maxIndex = Math.floor(totalTv / offset) - 1;
-      setpopularIndex((prev) => (prev === 0 ? maxIndex : prev - 1));
+      setpopularIndex((prev) => (prev === maxIndex ? 0 : prev - 1));
     }
   };
 
@@ -206,7 +204,7 @@ function PopularTv() {
       ) : (
         <Slider>
           <SliderTitle>인기 TV쇼</SliderTitle>
-          <Prev whileHover={{ opacity: 1 }} onClick={decreaseTopIndex}>
+          <Prev whileHover={{ opacity: 1 }} onClick={decreasePopularIndex}>
             <FontAwesomeIcon icon={faChevronLeft} size="2x" />
           </Prev>
           <AnimatePresence onExitComplete={toggleLeaving} initial={false}>
@@ -257,7 +255,7 @@ function PopularTv() {
                 ))}
             </Row>
           </AnimatePresence>
-          <Next whileHover={{ opacity: 1 }} onClick={increaseTopIndex}>
+          <Next whileHover={{ opacity: 1 }} onClick={increasePopularIndex}>
             <FontAwesomeIcon icon={faChevronRight} size="2x" />
           </Next>
         </Slider>

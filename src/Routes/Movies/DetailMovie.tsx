@@ -26,6 +26,7 @@ const Overlay = styled(motion.div)`
 `;
 
 const DetailInfo = styled.div`
+  font-family: "Cafe24SsurroundAir";
   color: ${(props: any) => props.theme.white.lighter};
   position: relative;
   top: -5rem;
@@ -158,14 +159,26 @@ function DetailMovie() {
                         }}
                       />
                       <DetailSection>
-                        <div>{detailData.overview}</div>
-                        <a
-                          href={`${detailData.homepage}`}
-                          target="_blank"
-                          rel="noreferrer"
+                        <div style={{ marginBottom: "1rem" }}>
+                          {detailData.overview}
+                        </div>
+                        <button
+                          style={{
+                            marginBottom: "1rem",
+                            backgroundColor: "yellow",
+                            borderRadius: "0.5rem",
+                            fontWeight: "600",
+                            padding: "0.5rem",
+                          }}
                         >
-                          {detailData.homepage}
-                        </a>
+                          <a
+                            href={`${detailData.homepage}`}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            Main Page
+                          </a>
+                        </button>
                         <div>
                           장르 :{" "}
                           {detailData.genres.map((genre, index) => (

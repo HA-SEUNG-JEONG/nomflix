@@ -30,6 +30,7 @@ const Logo = styled(motion.svg)`
     stroke-width: 6px;
     stroke: white;
   }
+  cursor: pointer;
 `;
 
 const Items = styled.ul`
@@ -151,6 +152,9 @@ function Header() {
     history.push(`/search?keyword=${data.keyword}`);
     setValue("keyword", "");
   };
+  const onClickedLogo = () => {
+    history.push("/");
+  };
 
   return (
     <>
@@ -162,6 +166,7 @@ function Header() {
       <Nav variants={navVariants} animate={navAnimation} initial={"top"}>
         <Col>
           <Logo
+            onClick={onClickedLogo}
             variants={logoVariants}
             whileHover="active"
             initial="normal"

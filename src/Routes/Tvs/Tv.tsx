@@ -365,40 +365,41 @@ export const Tv = () => {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
+                transition={{ type: "tween", duration: 1 }}
                 key={index}
               >
                 {data?.pages
                   .map((page) => page.results)
                   .flat()
                   .slice(offset * index, offset * index + offset)
-                  .map((movie) => (
+                  .map((tv) => (
                     <Box
-                      layoutId={movie.id + ""}
-                      key={movie.id}
+                      layoutId={"airing_" + tv.id}
+                      key={tv.id}
                       variants={boxVariants}
                       whileHover="hover"
                       initial="normal"
-                      transition={{ ease: "easeInOut" }}
-                      onClick={() => onBoxClicked(movie.id)}
+                      transition={{ type: "tween" }}
+                      onClick={() => onBoxClicked(tv.id)}
                     >
                       <MovieImg
                         variants={movieImgVariants}
                         src={
-                          movie.backdrop_path
-                            ? makeImagePath(movie.backdrop_path, "w500")
+                          tv.backdrop_path
+                            ? makeImagePath(tv.backdrop_path, "w500")
                             : DEFAULT_IMG
                         }
                       />
 
                       <Info variants={infoVariants}>
-                        <MovieTitle>{movie.original_name}</MovieTitle>
+                        <MovieTitle>{tv.name}</MovieTitle>
                         <MovieVote>
                           <FontAwesomeIcon
                             icon={faStar}
                             size="xs"
                             color="orange"
                           />
-                          <div>{movie.vote_average}</div>
+                          <div>{tv.vote_average}</div>
                         </MovieVote>
                       </Info>
                     </Box>

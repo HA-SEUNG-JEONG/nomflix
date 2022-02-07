@@ -19,6 +19,7 @@ import PopularTv from "./PopularTv";
 
 const Wrapper = styled.div`
   background-color: black;
+  height: 250vh;
 `;
 
 const Loader = styled(motion.div)`
@@ -53,7 +54,7 @@ const OverView = styled.p`
 
 const Slider = styled.div`
   position: relative;
-  top: -11.3rem;
+  top: -20.3rem;
   margin-bottom: 15rem;
 `;
 

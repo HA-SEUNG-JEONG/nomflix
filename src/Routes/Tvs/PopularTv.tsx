@@ -25,7 +25,7 @@ const Loader = styled(motion.div)`
 
 const Slider = styled.div`
   position: relative;
-  top: -1.3rem;
+  top: -5.3rem;
   margin-bottom: 15rem;
 `;
 

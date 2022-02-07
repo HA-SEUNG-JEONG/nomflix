@@ -56,7 +56,7 @@ const infoVariants = {
 
 const Slider = styled.div`
   position: relative;
-  top: -2.3rem;
+  top: -5.3rem;
   margin-bottom: 15rem;
 `;
 

@@ -19,6 +19,7 @@ import DetailMovie from "./DetailMovie";
 
 const Wrapper = styled.div`
   background: black;
+  height: 240vh;
 `;
 
 const Loader = styled.div`
@@ -83,7 +84,7 @@ const Overview = styled.p`
 
 const Slider = styled.div`
   position: relative;
-  top: -12.3rem;
+  top: -20.3rem;
   margin-bottom: 15rem;
 `;
 

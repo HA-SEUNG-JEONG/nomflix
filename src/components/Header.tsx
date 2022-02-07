@@ -80,11 +80,13 @@ const Input = styled(motion.input)`
   font-family: "Cafe24SsurroundAir";
   transform-origin: right center;
   position: absolute;
+
   right: -0.8rem;
   padding: 0.3rem 0.6rem;
   padding-left: 2.5rem;
   z-index: -1;
-  opacity: 0.8;
+  color:white;
+  opacity:0.6;
   font-size: 16px;
   background-color: transparent;
   border: 2px solid ${(props) => props.theme.white.lighter};
@@ -152,9 +154,6 @@ function Header() {
   const { register, setValue, handleSubmit } = useForm<IForm>();
   const onValid = (data: IForm) => {
     history.push(`/search?keyword=${data.keyword}`);
-    // if (typeof data !== "string") {
-    //   history.push("/");
-    // }
     setValue("keyword", "");
   };
   const onClickedLogo = () => {

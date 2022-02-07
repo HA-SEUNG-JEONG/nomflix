@@ -273,6 +273,7 @@ function Movie() {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
+                transition={{ type: "tween", duration: 1 }}
                 key={index}
               >
                 {data?.pages
@@ -287,7 +288,7 @@ function Movie() {
                       variants={BoxVariants}
                       whileHover="hover"
                       initial="normal"
-                      transition={{ ease: "easeInOut" }}
+                      transition={{ type: "tween" }}
                       onClick={() => onClickedBox(movie.id)}
                       bgphoto={makeImagePath(movie.backdrop_path, "w500")}
                     >

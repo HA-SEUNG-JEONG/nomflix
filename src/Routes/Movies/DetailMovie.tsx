@@ -180,14 +180,23 @@ function DetailMovie() {
                           </a>
                         </button>
                         <div>
-                          장르 :{" "}
+                          <span style={{ opacity: "0.4" }}>장르 : </span>
                           {detailData.genres.map((genre, index) => (
                             <span key={index}>{genre.name} </span>
                           ))}
                         </div>
-                        <div>개봉 일자 : {detailData.release_date}</div>
-                        <div>상영 시간 : {detailData.runtime} 분</div>
-                        <div>개봉 여부 : {detailData.status}</div>
+                        <div>
+                          <span style={{ opacity: "0.4" }}>개봉 일자 :</span>
+                          {detailData.release_date}
+                        </div>
+                        <div>
+                          <span style={{ opacity: "0.4" }}>상영 시간 :</span>
+                          {detailData.runtime} 분
+                        </div>
+                        <div>
+                          <span style={{ opacity: "0.4" }}>개봉 여부 :</span>
+                          {detailData.status}
+                        </div>
                       </DetailSection>
                     </DetailBody>
                   </DetailInfo>

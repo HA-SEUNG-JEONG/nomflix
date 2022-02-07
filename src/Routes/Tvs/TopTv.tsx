@@ -189,7 +189,7 @@ function TopTv() {
       toggleLeaving();
       const totalTv = topData.pages.map((page) => page.results).length - 1;
       const maxIndex = Math.floor(totalTv / offset) - 1;
-      setTopIndex((prev) => (prev === 0 ? maxIndex : prev - 1));
+      setTopIndex((prev) => (prev === maxIndex ? 0 : prev - 1));
     }
   };
 
@@ -223,7 +223,7 @@ function TopTv() {
                 .slice(offset * topIndex, offset * topIndex + offset)
                 .map((tv) => (
                   <Box
-                    layoutId={tv.id + ""}
+                    layoutId={"toptv_" + tv.id}
                     key={tv.id}
                     variants={boxVariants}
                     whileHover="hover"

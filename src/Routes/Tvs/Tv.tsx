@@ -321,7 +321,7 @@ export const Tv = () => {
       toggleLeaving();
       const totalTv = data.pages.map((page) => page.results).length - 1;
       const maxIndex = Math.floor(totalTv / offset) - 1;
-      setIndex((prev) => (prev === 0 ? maxIndex : prev - 1));
+      setIndex((prev) => (prev === maxIndex ? 0 : prev - 1));
     }
   };
 
@@ -370,40 +370,41 @@ export const Tv = () => {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
+                transition={{ type: "tween", duration: 1 }}
                 key={index}
               >
                 {data?.pages
                   .map((page) => page.results)
                   .flat()
                   .slice(offset * index, offset * index + offset)
-                  .map((movie) => (
+                  .map((tv) => (
                     <Box
-                      layoutId={movie.id + ""}
-                      key={movie.id}
+                      layoutId={"airing_" + tv.id}
+                      key={tv.id}
                       variants={boxVariants}
                       whileHover="hover"
                       initial="normal"
-                      transition={{ ease: "easeInOut" }}
-                      onClick={() => onBoxClicked(movie.id)}
+                      transition={{ type: "tween", duration: 1 }}
+                      onClick={() => onBoxClicked(tv.id)}
                     >
                       <MovieImg
                         variants={movieImgVariants}
                         src={
-                          movie.poster_path
-                            ? makeImagePath(movie.poster_path, "w500")
+                          tv.poster_path
+                            ? makeImagePath(tv.poster_path, "w500")
                             : ""
                         }
                       />
 
                       <Info variants={infoVariants}>
-                        <MovieTitle>{movie.original_name}</MovieTitle>
+                        <MovieTitle>{tv.name}</MovieTitle>
                         <MovieVote>
                           <FontAwesomeIcon
                             icon={faStar}
                             size="xs"
                             color="orange"
                           />
-                          <div>{movie.vote_average}</div>
+                          <div>{tv.vote_average}</div>
                         </MovieVote>
                       </Info>
                     </Box>
@@ -478,16 +479,22 @@ export const Tv = () => {
                                 </a>
                               </button>
                               <div>
-                                장르 :
+                                <span style={{ opacity: "0.4" }}>장르 : </span>
                                 {detailData.genres.map((genre, index) => (
                                   <span key={index}> {genre.name}</span>
                                 ))}
                               </div>
                               <div>
-                                첫 방영 일자 : {detailData.first_air_date}
+                                <span style={{ opacity: "0.4" }}>
+                                  첫 방영 일자 :
+                                </span>
+                                {detailData.first_air_date}
                               </div>
                               <div>
-                                방영 시간 : {detailData.episode_run_time} 시간,{" "}
+                                <span style={{ opacity: "0.4" }}>
+                                  방영 시간 :{" "}
+                                </span>{" "}
+                                {detailData.episode_run_time} 시간,{" "}
                                 {detailData.number_of_episodes}개의 에피소드
                               </div>
                             </DetailSection>

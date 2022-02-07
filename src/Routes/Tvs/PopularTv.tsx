@@ -189,7 +189,7 @@ function PopularTv() {
       toggleLeaving();
       const totalTv = popularData.pages.map((page) => page.results).length - 1;
       const maxIndex = Math.floor(totalTv / offset) - 1;
-      setpopularIndex((prev) => (prev === maxIndex ? 0 : prev - 1));
+      setpopularIndex((prev) => (prev === 0 ? maxIndex : prev - 1));
     }
   };
 
@@ -221,34 +221,34 @@ function PopularTv() {
                 .map((page) => page.results)
                 .flat()
                 .slice(offset * popularIndex, offset * popularIndex + offset)
-                .map((movie) => (
+                .map((tv) => (
                   <Box
-                    layoutId={movie.id + ""}
-                    key={movie.id}
+                    layoutId={"popular_" + tv.id}
+                    key={tv.id}
                     variants={boxVariants}
                     whileHover="hover"
                     initial="normal"
                     transition={{ type: "tween" }}
-                    onClick={() => onClickedBox(movie.id)}
+                    onClick={() => onClickedBox(tv.id)}
                   >
                     <MovieImg
                       variants={movieImgVariants}
                       src={
-                        movie.poster_path
-                          ? makeImagePath(movie.poster_path, "w500")
+                        tv.poster_path
+                          ? makeImagePath(tv.poster_path, "w500")
                           : DEFAULT_IMG
                       }
                     />
 
                     <Info variants={infoVariants}>
-                      <MovieTitle>{movie.name}</MovieTitle>
+                      <MovieTitle>{tv.name}</MovieTitle>
                       <MovieVote>
                         <FontAwesomeIcon
                           icon={faStar}
                           size="xs"
                           color="orange"
                         />
-                        <div>{movie.vote_average}</div>
+                        <div>{tv.vote_average}</div>
                       </MovieVote>
                     </Info>
                   </Box>

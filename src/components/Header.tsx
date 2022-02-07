@@ -214,7 +214,7 @@ function Header() {
               animate={inputAnimation}
               initial={{ scaleX: 0 }}
               transition={{ type: "linear" }}
-              placeholder="Search for a movie or tv show"
+              placeholder="영화 및 TV 프로그램 검색"
               autoComplete="off"
             />
           </Search>

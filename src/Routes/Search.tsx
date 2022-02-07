@@ -40,11 +40,13 @@ const Banner = styled.div<{ bgPhoto: string }>`
 `;
 
 const Title = styled.h2`
+  font-family: "Cafe24SsurroundAir";
   font-size: 5rem;
   margin-bottom: 2rem;
 `;
 
 const OverView = styled.p`
+  font-family: "Cafe24SsurroundAir";
   font-size: 1.5rem;
   width: 50%;
 `;
@@ -56,6 +58,7 @@ const Slider = styled.div`
 `;
 
 const SliderTitle = styled.div`
+  font-family: "Cafe24SsurroundAir";
   margin-bottom: 2rem;
   margin-left: 4rem;
   font-size: 1.5rem;
@@ -124,6 +127,7 @@ const Overlay = styled(motion.div)`
 `;
 
 const BigMovieDetail = styled(motion.div)`
+  font-family: "Cafe24SsurroundAir";
   position: absolute;
   border-radius: 1rem;
   overflow: hidden;
@@ -181,7 +185,10 @@ const DetailSection = styled.div`
   padding: 1.5rem;
 `;
 
-const MovieTitle = styled.div``;
+const MovieTitle = styled.div`
+  font-family: "Cafe24SsurroundAir";
+`;
+
 const MovieVote = styled.div`
   width: 3rem;
   display: flex;
@@ -260,8 +267,8 @@ export const Search = () => {
   );
 
   const {
-    data: detailData,
-    isLoading: detailLoading,
+    data: searchData,
+    isLoading: searchLoading,
     refetch,
   } = useQuery<IGetMovieDetailResult>(
     ["movies", bigMovieMatch?.params.movieId],
@@ -442,7 +449,7 @@ export const Search = () => {
           )}
 
           <AnimatePresence>
-            {detailLoading ? (
+            {searchLoading ? (
               <Loader>Loading...</Loader>
             ) : (
               bigMovieMatch && (
@@ -456,48 +463,48 @@ export const Search = () => {
                     style={{ top: scrollY.get() + 50 }}
                     layoutId={bigMovieMatch.params.movieId}
                   >
-                    {detailData && (
+                    {searchData && (
                       <>
                         <BigCover
                           style={{
                             backgroundImage: `linear-gradient(transparent, black), url(${
-                              detailData.backdrop_path
-                                ? makeImagePath(detailData.backdrop_path)
+                              searchData.backdrop_path
+                                ? makeImagePath(searchData.backdrop_path)
                                 : DEFAULT_IMG
                             })`,
                           }}
                         ></BigCover>
                         <DetailInfo>
                           <DetailHeader>
-                            <DetailTitle>{detailData.title}</DetailTitle>
-                            <Tagline>{detailData.tagline}</Tagline>
+                            <DetailTitle>{searchData.title}</DetailTitle>
+                            <Tagline>{searchData.tagline}</Tagline>
                           </DetailHeader>
-                          <DetailBody tagline={Boolean(detailData.tagline)}>
+                          <DetailBody tagline={Boolean(searchData.tagline)}>
                             <DetailPoster
                               style={{
                                 backgroundImage: `url(${makeImagePath(
-                                  detailData.poster_path
+                                  searchData.poster_path
                                 )})`,
                               }}
                             />
                             <DetailSection>
-                              <div>{detailData.overview}</div>
+                              <div>{searchData.overview}</div>
                               <a
-                                href={`${detailData.homepage}`}
+                                href={`${searchData.homepage}`}
                                 target="_blank"
                                 rel="noreferrer"
                               >
-                                {detailData.homepage}
+                                {searchData.homepage}
                               </a>
                               <div>
                                 장르 :{" "}
-                                {detailData.genres.map((genre) => (
+                                {searchData.genres.map((genre) => (
                                   <span>{genre.name} </span>
                                 ))}
                               </div>
-                              <div>개봉 일자 : {detailData.release_date}</div>
-                              <div>상영 시간 : {detailData.runtime} 분</div>
-                              <div>개봉 여부 : {detailData.status}</div>
+                              <div>개봉 일자 : {searchData.release_date}</div>
+                              <div>상영 시간 : {searchData.runtime} 분</div>
+                              <div>개봉 여부 : {searchData.status}</div>
                             </DetailSection>
                           </DetailBody>
                         </DetailInfo>

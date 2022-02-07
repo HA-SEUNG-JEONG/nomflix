@@ -77,16 +77,17 @@ const Bar = styled(motion.span)`
 `;
 
 const Input = styled(motion.input)`
+  font-family: "Cafe24SsurroundAir";
   transform-origin: right center;
   position: absolute;
-  right: -1.8rem;
+  right: -0.8rem;
   padding: 0.3rem 0.6rem;
   padding-left: 2.5rem;
   z-index: -1;
-  color: white;
+  opacity: 0.8;
   font-size: 16px;
   background-color: transparent;
-  border: 1px solid ${(props) => props.theme.white.lighter};
+  border: 2px solid ${(props) => props.theme.white.lighter};
   &::placeholder {
     position: relative;
     left: -0.625rem;
@@ -215,6 +216,7 @@ function Header() {
               initial={{ scaleX: 0 }}
               transition={{ type: "linear" }}
               placeholder="Search for a movie or tv show"
+              autoComplete="off"
             />
           </Search>
         </Col>

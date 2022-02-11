@@ -1,3 +1,14 @@
+결과물
+
+![image](https://user-images.githubusercontent.com/88266129/153626129-9288c81e-73e3-460f-bdea-87687acb7930.png)
+![image](https://user-images.githubusercontent.com/88266129/153626245-fefc9d6f-81f6-41fb-af36-f8bc1b430e4b.png)
+
+![image](https://user-images.githubusercontent.com/88266129/153626411-a11084a6-e62c-4b3a-b961-e5468f31bd67.png)
+
+
+
+
+
 ### Variants
 
 기본적으로 animation이 있는 stage라 생각하면 된다.
